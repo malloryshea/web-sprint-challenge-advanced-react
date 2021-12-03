@@ -8,18 +8,18 @@ import userEvent from '@testing-library/user-event';
 test("renders without errors", () => {
     render(<CheckoutForm/>)
 
-    const checkoutTitle = screen.getByText(/Checkout Form:/i);
+    const checkout= screen.getByText(/Form/i);
     const firstName = screen.getByLabelText (/First Name:/i);
     const lastName = screen.getByLabelText (/Last Name:/i);
     const address = screen.getByLabelText (/Address:/i);
     const city = screen.getByLabelText (/City:/i);
     const state= screen.getByLabelText (/State:/i);
     const zip = screen.getByLabelText (/Zip:/i);
-    const submitButton = screen.getByRole ("button", {name:/checkout/i});
+    
 
-    expect(checkoutTitle).toBeVisible();
-    expect(checkoutTitle).toBeInTheDocument();
-    expect(checkoutTitle).toHaveTextContent(/Checkout Form/i);
+    expect(checkout).toBeVisible();
+    expect(checkout).toBeInTheDocument();
+    expect(checkout).toBeTruthy();
 
     expect(firstName).toBeTruthy();
     expect(lastName).toBeTruthy();
@@ -28,14 +28,14 @@ test("renders without errors", () => {
     expect(state).toBeTruthy();
     expect(zip).toBeTruthy();
 
-    expect(submitButton).toHaveBeenCalledTimes(1);
+    
 });
 
 test("shows success message on submit with form details", () => {
     render(<CheckoutForm/>)
 
-    const firstName = screen.getByLabelText(/FirstName:/i);
-    const lastName = screen.getByLabelText(/LastName:/i);
+    const firstName = screen.getByLabelText(/First Name:/i);
+    const lastName = screen.getByLabelText(/Last Name:/i);
     const address = screen.getByLabelText(/Address:/i);
     const city = screen.getByLabelText(/City:/i);
     const state = screen.getByLabelText(/State:/i);
@@ -64,6 +64,5 @@ test("shows success message on submit with form details", () => {
     expect(successMessage).toHaveTextContent(/TX/i);
     expect(successMessage).toHaveTextContent(/78640/i);
     
-    expect(submitButton).toHaveBeenCalledTimes(1);
 });
     
